@@ -26,3 +26,9 @@ messages body to s3.
 4. Necessary policies and roles required for this use-case.
 
 -->>Necessary Roles and Policies is attached to the relevant resourecs with the minimal access provided.
+
+
+**Improvements based on efficiency and security point of view**
+* Leverage existing retry logic and dead letter queues. If the Lambda function does not return success, the message will not be deleted from the queue and will reappear after the visibility timeout has expired.
+* Allow built-in support for **dead letter queues** to be leveraged. After a specified number of failures, the message will automatically be placed in the DLQ for later inspection.
+* Messages are deleted after the Lambda function completes successfully. As such, the visibility timeout for queues and messages should be long enough that any tasks or jobs associated with the message can be completed in time.
