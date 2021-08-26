@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 
+Description: Lambda - SQS - SNS - S3
 
 Resources:
   # Define the SQS queue
